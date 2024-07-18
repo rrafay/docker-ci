@@ -5,15 +5,19 @@ import os
 
 app = Flask(__name__)
 
-if 'POSTGRES_PASSWORD_FILE' in os.environ:
-   with open(os.environ['POSTGRES_PASSWORD_FILE'], 'r') as f:
-       password = f.read().strip()
-else:
-   password = os.environ['POSTGRES_PASSWORD']
+# if 'POSTGRES_PASSWORD_FILE' in os.environ:
+#    with open(os.environ['POSTGRES_PASSWORD_FILE'], 'r') as f:
+#        password = f.read().strip()
+# else:
+#    password = os.environ['POSTGRES_PASSWORD']
+# Read the password from the db/password.txt file
+password_file_path = 'db/password.txt'
+with open(password_file_path, 'r') as f:
+    password = f.read().strip()
 
 @app.route('/')
 def hello_world():
-    return 'Hello, Docker!'
+    return 'Hello, Rafay!'
 
 
 @app.route('/widgets')
